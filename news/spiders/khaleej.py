@@ -1,5 +1,7 @@
 from scrapy.spiders import Spider
 # import scrapy
+import schedule
+import time
 
 class KhaleejSpider(Spider):
     #spider name
@@ -9,7 +11,15 @@ class KhaleejSpider(Spider):
 
     def parse(self,response):
         all_urls = response.css('a::attr(href)').getall()
+        urls_list = []
         for all_url in all_urls:
             if  'javascript' not in all_url:
                 absolute_url=response.urljoin(all_url)
-                print(absolute_url)
+                # print(absolute_url)
+                urls_list.append(absolute_url)
+        print(urls_list)
+    
+    
+        # yield{
+        #     'absolute_allurls': [response.urljoin for all_url in all_urls if 'javascript' not in all_url]
+        # }
