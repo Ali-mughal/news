@@ -18,7 +18,10 @@ class KhaleejSpider(Spider):
                 # print(absolute_url)
                 urls_list.append(absolute_url)
         print(urls_list)
-    
+    # schedule.every(10).seconds.do(parse)
+    # while True:
+    #     schedule.run_pending()
+    #     time.sleep(1)
     
         # yield{
         #     'absolute_allurls': [response.urljoin for all_url in all_urls if 'javascript' not in all_url]
