@@ -2,6 +2,7 @@ from scrapy.spiders import Spider
 # import scrapy
 import schedule
 import time
+from news.items import NewsItem
 
 class KhaleejSpider(Spider):
     #spider name
@@ -15,11 +16,9 @@ class KhaleejSpider(Spider):
         for all_url in all_urls:
             if  'javascript' not in all_url:
                 absolute_url=response.urljoin(all_url)
+                item=NewsItem()
+                item['url']=absolute_url
+                yield item
                 # print(absolute_url)
                 urls_list.append(absolute_url)
-        print(urls_list)
-    
-    
-        # yield{
-        #     'absolute_allurls': [response.urljoin for all_url in all_urls if 'javascript' not in all_url]
-        # }
+        print(len(urls_list))
