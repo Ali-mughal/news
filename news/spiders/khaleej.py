@@ -16,9 +16,12 @@ class KhaleejSpider(Spider):
         for all_url in all_urls:
             if  'javascript' not in all_url:
                 absolute_url=response.urljoin(all_url)
-                item=NewsItem()
-                item['url']=absolute_url
-                yield item
-                # print(absolute_url)
                 urls_list.append(absolute_url)
+             
+
+        item=NewsItem()
+        item['url']=list(set(urls_list))
+        yield item
+        # print(absolute_url)
+            
         print(len(urls_list))
