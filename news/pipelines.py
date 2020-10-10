@@ -15,8 +15,15 @@ class NewsPipeline(object):
         )
         db = self.conn['news_db']
         self.collection = db['urls_tb']
+        
     def process_item(self, item, spider):
+        self.collection.update(
+            {"url": item["url"]},
+            {"$set": dict(item)},
+            upsert=True
+        )
         for url in item['url']:
-            self.collection.insert(dict({'url_key':url}))
+            # self.collection.insert(dict({'url_key':url}))
+            print("sdl;kfjasd;klfjas;ljdfl;asjdf")
             # self.db[self.collection_name].insert_one(ItemAdapter(item).asdict())
         return item
